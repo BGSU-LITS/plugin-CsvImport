@@ -736,7 +736,8 @@ class CsvImport_Import extends Omeka_Record_AbstractRecord
         $fileUrls = $result[CsvImport_ColumnMap::TYPE_FILE];
         foreach ($fileUrls as $url) {
             try {
-                $file = insert_files_for_item($item, 'Url', $url,
+                $file = insert_files_for_item($item,
+                    new CsvImport_FileIngestUrl, $url,
                     array('ignore_invalid_files' => false));
             } catch (Omeka_File_Ingest_InvalidException $e) {
                 $msg = "Invalid file URL '$url': "
